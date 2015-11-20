@@ -80,6 +80,7 @@ public class DeleteForm extends javax.swing.JInternalFrame {
         apiURLs.put("Product SKUs", "products/skus");
         apiURLs.put("Product Videos", "products/videos");
         apiURLs.put("Redirects", "redirects");
+        
         initComponents();
     }
     
