@@ -49,6 +49,7 @@ public class EscalationsDesktop extends javax.swing.JFrame {
     private DeleteForm deleteFormIF;
     private CSVExport csvExportIF;
     private APIInfo apiInfoIF;
+    private CustomerAddFix customerAddFixIF;
     private final HashMap<String, JInternalFrame> framesAdded;
     private int pullLimit;
     /**
@@ -113,6 +114,7 @@ public class EscalationsDesktop extends javax.swing.JFrame {
         orphanedProducts = new javax.swing.JMenuItem();
         orphanedSkus = new javax.swing.JMenuItem();
         orphanedRules = new javax.swing.JMenuItem();
+        custAddFix = new javax.swing.JMenuItem();
         apiInfo = new javax.swing.JMenuItem();
         deleteForm = new javax.swing.JMenuItem();
 
@@ -262,6 +264,14 @@ public class EscalationsDesktop extends javax.swing.JFrame {
         orphanedMenu.add(orphanedRules);
 
         diagnosticMenu.add(orphanedMenu);
+
+        custAddFix.setText("Customer Address Fix");
+        custAddFix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custAddFixActionPerformed(evt);
+            }
+        });
+        diagnosticMenu.add(custAddFix);
 
         apiInfo.setText("API Information Pull");
         apiInfo.addActionListener(new java.awt.event.ActionListener() {
@@ -501,6 +511,19 @@ public class EscalationsDesktop extends javax.swing.JFrame {
         deleteFormIF.setVisible(true);
     }//GEN-LAST:event_deleteFormActionPerformed
 
+    private void custAddFixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custAddFixActionPerformed
+        if(!framesAdded.containsKey("cust_add_fix")) {
+            try {
+                customerAddFixIF = new CustomerAddFix(store, this);
+                escalationsDesktop.add(customerAddFixIF);
+                framesAdded.put("cust_add_fix", customerAddFixIF);
+            } catch (IOException | ClassNotFoundException ex) {
+                
+            }
+        }
+        customerAddFixIF.setVisible(true);
+    }//GEN-LAST:event_custAddFixActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -601,6 +624,7 @@ public class EscalationsDesktop extends javax.swing.JFrame {
     private javax.swing.JMenuItem connectStore;
     private javax.swing.JTextPane connectivity;
     private javax.swing.JMenuItem csvDownload;
+    private javax.swing.JMenuItem custAddFix;
     private javax.swing.JMenuItem deleteForm;
     private javax.swing.JMenu diagnosticMenu;
     private javax.swing.JMenuItem disconnectStore;

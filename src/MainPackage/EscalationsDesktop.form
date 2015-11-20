@@ -100,6 +100,14 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="custAddFix">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Customer Address Fix"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="custAddFixActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="apiInfo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="API Information Pull"/>

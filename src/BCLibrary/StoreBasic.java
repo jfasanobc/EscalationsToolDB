@@ -197,7 +197,7 @@ public class StoreBasic implements Store {
     @Override
     public boolean put(String url, String data) throws Exception{
         try {
-            connection = this.createConnection(url, "POST", this.sslExemption);
+            connection = this.createConnection(url, "PUT", this.sslExemption);
             connection.setDoOutput(true);
             for(String key: requestHeaders.keySet()) {
                 connection.addRequestProperty(key, requestHeaders.get(key));
@@ -221,7 +221,7 @@ public class StoreBasic implements Store {
     @Override
     public boolean put(String url, JSONObject data) throws Exception{
         try {
-            connection = this.createConnection(url, "POST", this.sslExemption);
+            connection = this.createConnection(url, "PUT", this.sslExemption);
             connection.setDoOutput(true);
             for(String key: requestHeaders.keySet()) {
                 connection.addRequestProperty(key, requestHeaders.get(key));
