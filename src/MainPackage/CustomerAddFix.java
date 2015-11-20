@@ -100,6 +100,7 @@ public class CustomerAddFix extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setTitle("Customer Address FIx");
 
         progressBar.setStringPainted(true);
 
