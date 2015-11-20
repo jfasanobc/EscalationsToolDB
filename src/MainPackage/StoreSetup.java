@@ -70,6 +70,7 @@ public class StoreSetup extends javax.swing.JInternalFrame {
         rightClickActions.add(selectAllAction);
 
         setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
 
         apiPathLabel.setText("API Path");
 

@@ -76,7 +76,7 @@ public class ProgressThread extends Thread {
                     else
                         threadBar.setString(currentTask + " " + percentage + "%" + " (Estimated Time: " + timer + ")");
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(500);
                     } catch (InterruptedException ex) {
                     
                     }

@@ -263,6 +263,7 @@ public class CSVExport extends javax.swing.JInternalFrame {
         int pages = (productCount / LIMIT) + (((productCount % LIMIT) > 0) ? 1 : 0);
         newThread = new ProgressThread(progressBar, false, true);
         newThread.setPercentage(0);
+        newThread.setCurrentTask("Generating the CSV");
         newThread.start();
         //CSV headers
         String headerStart =  "Item Type,Product ID,Product Name,Product Type,Product Code/SKU,Bin Picking Number,Brand Name,Option Set,Option Set Align,Product Description,Price,Cost Price,Retail Price,Sale Price,Fixed Shipping Cost,Free Shipping,Product Warranty,Product Weight,Product Width,Product Height,Product Depth,Allow Purchases?,Product Visible?,Product Availability,Track Inventory,Current Stock Level,Low Stock Level,Category";
@@ -295,8 +296,9 @@ public class CSVExport extends javax.swing.JInternalFrame {
         for(int page = 1; page <= pages; page++) {
             queryStatement = "SELECT * FROM products LIMIT " + LIMIT + (((LIMIT * (page - 1)) > 0) ? (" OFFSET " + (LIMIT * (page - 1))) : "");
             ResultSet productPull = databaseRepository.createStatement(ResultSet.TYPE_FORWARD_ONLY,ResultSet.CONCUR_READ_ONLY).executeQuery(queryStatement);
-            StringBuilder csvproduct = new StringBuilder();
+            StringBuilder csvproduct;
             while (productPull.next()) {
+                csvproduct = new StringBuilder("");
                 int skuCount = getCount("SELECT COUNT(1) FROM skus WHERE product_id = " + productPull.getInt("id"));
                 int ruleCount = getCount("SELECT COUNT(1) FROM rules WHERE product_id = " + productPull.getInt("id"));
                 if (ruleCount + skuCount + numOfLines >= 64500) {
@@ -409,16 +411,18 @@ public class CSVExport extends javax.swing.JInternalFrame {
                 csvproduct.append("\n");
                 output.print(csvproduct);
                 numOfLines++;
+                currentLine++;
+                newThread.setPercentage((currentLine * 100) / totalLines);
                 System.out.println("Wrote so far " + numOfLines + " records.");
                 //build skus if exist
                 if (skuCount > 0) {
                     int skuPages = (skuCount / LIMIT) + (((skuCount % LIMIT) > 0) ? 1 : 0);
                     for(int skuPage = 1; skuPage <= skuPages; skuPage++) {
-                        queryStatement = "SELECT * FROM skus LIMIT " + LIMIT + (((LIMIT * (skuPage - 1)) > 0) ? (" OFFSET " + (LIMIT * (skuPage - 1))) : "");
+                        queryStatement = "SELECT * FROM skus WHERE product_id = " + productPull.getInt("id") + " LIMIT " + LIMIT + (((LIMIT * (skuPage - 1)) > 0) ? (" OFFSET " + (LIMIT * (skuPage - 1))) : "");
                         ResultSet skus = databaseRepository.createStatement().executeQuery(queryStatement);
                         
                         while (skus.next()) {
-                            StringBuilder csvsku = new StringBuilder();
+                            StringBuilder csvsku = new StringBuilder("");
                             csvsku.append("SKU,");
                             csvsku.append(skus.getInt("id")).append(",");
                             JSONArray options = new JSONArray(skus.getString("options"));
@@ -456,6 +460,8 @@ public class CSVExport extends javax.swing.JInternalFrame {
                             output.print(csvsku);
                             numOfLines++;
                             currentLine++;
+                            newThread.setPercentage((currentLine * 100) / totalLines);
+                            
                         }
                         
                         skus.close();
@@ -465,7 +471,7 @@ public class CSVExport extends javax.swing.JInternalFrame {
                 if (ruleCount > 0) {
                     int rulePages = (ruleCount / LIMIT) + (((ruleCount % LIMIT) > 0) ? 1 : 0);
                     for(int rulePage = 1; rulePage <= rulePages; rulePage++) {
-                        queryStatement = "SELECT * FROM rules LIMIT " + LIMIT + (((LIMIT * (rulePage - 1)) > 0) ? (" OFFSET " + (LIMIT * (rulePage - 1))) : "");
+                        queryStatement = "SELECT * FROM rules LIMIT WHERE product_id = " + productPull.getInt("id") + " LIMIT " + LIMIT + (((LIMIT * (rulePage - 1)) > 0) ? (" OFFSET " + (LIMIT * (rulePage - 1))) : "" + " WHERE product_id = " + productPull.getInt("id"));
                         ResultSet rules = databaseRepository.createStatement().executeQuery(queryStatement);
                         while(rules.next()) {
                             String csvrule = "";
@@ -552,15 +558,18 @@ public class CSVExport extends javax.swing.JInternalFrame {
                             output.print(csvrule +"\n");
                             numOfLines++;
                             currentLine++;
+                            newThread.setPercentage((currentLine * 100) / totalLines);
+                            
                         }
                         rules.close();
                     }
                 }
-                newThread.setPercentage((currentLine * 100) / totalLines);
+                
             }
             productPull.close();
         }
         output.close();
+        newThread.setPercentage(100);
         prefixTextField.setEnabled(true);
         generateLabel.setEnabled(true);
         limitComboBox.setEnabled(true);
@@ -608,7 +617,7 @@ public class CSVExport extends javax.swing.JInternalFrame {
         //get metadata of the uri
         String metaData;
         HashMap <String, String> columnMetaData = new HashMap<>();
-        int numRecord = 0;
+        
         try {
             store.options(uri);
             if (store.getStatusCode() > 0)
@@ -649,6 +658,7 @@ public class CSVExport extends javax.swing.JInternalFrame {
         JSONObject jsonObject;
         int fieldCounter = 0;
         long startTimer = 0;
+        int numRecord = 0;
         do {
             if (newThread.isTimerAvailable()) 
                 startTimer = System.nanoTime();
@@ -685,13 +695,12 @@ public class CSVExport extends javax.swing.JInternalFrame {
                         }
                         else {}
                         if (fieldCounter < headers.size() - 1)
-                            insertRecord += ",";
-                        numRecord++;
-                        
+                            insertRecord += ",";                        
                     }
 
                     insertRecord += ")";
                     insertStatement.executeUpdate(insertRecord);
+                    numRecord++;
                     insertStatement.close();
                     if (newThread.isTimerAvailable())
                         newThread.generateTime(startTimer, resourceCount, (counter + 1 + (249 * (page - 1))), 249);

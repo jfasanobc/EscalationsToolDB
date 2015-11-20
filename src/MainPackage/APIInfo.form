@@ -69,43 +69,44 @@
     <Component class="javax.swing.JComboBox" name="typeReport">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="36">
+          <StringArray count="37">
             <StringItem index="0" value="--Select One--"/>
             <StringItem index="1" value="301 Redirects"/>
-            <StringItem index="2" value="Blog Posts"/>
-            <StringItem index="3" value="Blog Tags"/>
-            <StringItem index="4" value="Brands"/>
-            <StringItem index="5" value="Bulk Price On Products"/>
-            <StringItem index="6" value="Categories"/>
-            <StringItem index="7" value="Countries"/>
-            <StringItem index="8" value="Coupons"/>
-            <StringItem index="9" value="Custom Fields"/>
-            <StringItem index="10" value="Customer Addresses"/>
-            <StringItem index="11" value="Customer Groups"/>
-            <StringItem index="12" value="Customers"/>
-            <StringItem index="13" value="Enabled Payments"/>
-            <StringItem index="14" value="Option Sets"/>
-            <StringItem index="15" value="Option Values"/>
-            <StringItem index="16" value="Options"/>
-            <StringItem index="17" value="Options Assigned To Option Sets"/>
-            <StringItem index="18" value="Order Coupons"/>
-            <StringItem index="19" value="Order Messages"/>
-            <StringItem index="20" value="Order Products"/>
-            <StringItem index="21" value="Order Shipments"/>
-            <StringItem index="22" value="Order Shipping Addresses"/>
-            <StringItem index="23" value="Order Statuses"/>
-            <StringItem index="24" value="Order Taxes"/>
-            <StringItem index="25" value="Orders"/>
-            <StringItem index="26" value="Product Images"/>
-            <StringItem index="27" value="Product Options"/>
-            <StringItem index="28" value="Product Reviews"/>
-            <StringItem index="29" value="Product Rules"/>
-            <StringItem index="30" value="Products"/>
-            <StringItem index="31" value="Shipping Methods"/>
-            <StringItem index="32" value="SKUs"/>
-            <StringItem index="33" value="States"/>
-            <StringItem index="34" value="Store Information"/>
-            <StringItem index="35" value="Tax Classes"/>
+            <StringItem index="2" value="Banners"/>
+            <StringItem index="3" value="Blog Posts"/>
+            <StringItem index="4" value="Blog Tags"/>
+            <StringItem index="5" value="Brands"/>
+            <StringItem index="6" value="Bulk Price On Products"/>
+            <StringItem index="7" value="Categories"/>
+            <StringItem index="8" value="Countries"/>
+            <StringItem index="9" value="Coupons"/>
+            <StringItem index="10" value="Custom Fields"/>
+            <StringItem index="11" value="Customer Addresses"/>
+            <StringItem index="12" value="Customer Groups"/>
+            <StringItem index="13" value="Customers"/>
+            <StringItem index="14" value="Enabled Payments"/>
+            <StringItem index="15" value="Option Sets"/>
+            <StringItem index="16" value="Option Values"/>
+            <StringItem index="17" value="Options"/>
+            <StringItem index="18" value="Options Assigned To Option Sets"/>
+            <StringItem index="19" value="Order Coupons"/>
+            <StringItem index="20" value="Order Messages"/>
+            <StringItem index="21" value="Order Products"/>
+            <StringItem index="22" value="Order Shipments"/>
+            <StringItem index="23" value="Order Shipping Addresses"/>
+            <StringItem index="24" value="Order Statuses"/>
+            <StringItem index="25" value="Order Taxes"/>
+            <StringItem index="26" value="Orders"/>
+            <StringItem index="27" value="Product Images"/>
+            <StringItem index="28" value="Product Options"/>
+            <StringItem index="29" value="Product Reviews"/>
+            <StringItem index="30" value="Product Rules"/>
+            <StringItem index="31" value="Products"/>
+            <StringItem index="32" value="Shipping Methods"/>
+            <StringItem index="33" value="SKUs"/>
+            <StringItem index="34" value="States"/>
+            <StringItem index="35" value="Store Information"/>
+            <StringItem index="36" value="Tax Classes"/>
           </StringArray>
         </Property>
       </Properties>

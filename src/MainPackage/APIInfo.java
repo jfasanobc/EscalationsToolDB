@@ -50,6 +50,7 @@ public class APIInfo extends javax.swing.JInternalFrame {
         
         //construct the HashMap
         this.apiURLs.put("301 Redirects","redirects");
+        this.apiURLs.put("Banners","banners");
         this.apiURLs.put("Blog Posts","blog/posts");
         this.apiURLs.put("Blog Tags","blog/tags");
         this.apiURLs.put("Brands","brands");
@@ -107,7 +108,7 @@ public class APIInfo extends javax.swing.JInternalFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setTitle("API Pulls");
 
-        typeReport.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select One--", "301 Redirects", "Blog Posts", "Blog Tags", "Brands", "Bulk Price On Products", "Categories", "Countries", "Coupons", "Custom Fields", "Customer Addresses", "Customer Groups", "Customers", "Enabled Payments", "Option Sets", "Option Values", "Options", "Options Assigned To Option Sets", "Order Coupons", "Order Messages", "Order Products", "Order Shipments", "Order Shipping Addresses", "Order Statuses", "Order Taxes", "Orders", "Product Images", "Product Options", "Product Reviews", "Product Rules", "Products", "Shipping Methods", "SKUs", "States", "Store Information", "Tax Classes" }));
+        typeReport.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Select One--", "301 Redirects", "Banners", "Blog Posts", "Blog Tags", "Brands", "Bulk Price On Products", "Categories", "Countries", "Coupons", "Custom Fields", "Customer Addresses", "Customer Groups", "Customers", "Enabled Payments", "Option Sets", "Option Values", "Options", "Options Assigned To Option Sets", "Order Coupons", "Order Messages", "Order Products", "Order Shipments", "Order Shipping Addresses", "Order Statuses", "Order Taxes", "Orders", "Product Images", "Product Options", "Product Reviews", "Product Rules", "Products", "Shipping Methods", "SKUs", "States", "Store Information", "Tax Classes" }));
 
         progressBar.setStringPainted(true);
 
